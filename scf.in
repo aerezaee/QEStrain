@@ -1,0 +1,62 @@
+&control
+	calculation= 'scf',
+	pseudo_dir= './ps/'
+	prefix = 'QE'
+	outdir= './out/'
+	verbosity = 'low'
+	nstep = 100
+	restart_mode = 'from_scratch'
+	etot_conv_thr = 1e-6,
+	forc_conv_thr = 1e-3,
+/ 
+
+&system
+	ibrav= 0
+	nat= 3, 
+	ntyp= 2,
+	ecutwfc= 40,
+	ecutrho = 160,
+	input_dft= 'PBE',
+	occupations= 'smearing',
+	smearing= 'gaussian',
+	degauss= 0.0012,
+/
+
+&electrons
+	diagonalization='david',
+	mixing_mode = 'plain',
+	mixing_beta = 0.7,
+	conv_thr =  1e-6,
+	electron_maxstep = 100
+	scf_must_converge = .false.
+/ 
+
+&ions
+	ion_dynamics = 'bfgs',
+/
+
+&cell
+	cell_dynamics='bfgs'
+	cell_factor = 5
+/
+
+ATOMIC_SPECIES
+Na	22.989769	Na.UPF
+P	30.973762	P.UPF
+
+
+CELL_PARAMETERS angstrom
+5	0.000000	0.000000
+0.000000	5	0.000000
+0.000000	0.000000	5
+
+
+ATOMIC_POSITIONS crystal
+Na	0.44748766	0.48873666	0.34612866
+P	0.74882896	0.78256612	0.42915790
+P	0.53798202	0.41673000	0.57186247
+
+
+K_POINTS gamma
+1 1 1 0 0 0
+
